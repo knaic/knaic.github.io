@@ -473,14 +473,6 @@
             
 <div class="section">
     <h2><span class="arrow">▶</span> now playing</h2>
-    <div id="lastfm-widget">
-        <p class="highlight" data-type="comment" id="lastfm-track">⏳ loading...</p>
-        <p class="highlight" data-type="comment" id="lastfm-artist" style="font-size: 0.9rem; margin-top: 0.2rem;"></p>
-    </div>
-</div>
-
-<div class="section">
-    <h2><span class="arrow">▶</span> now playing</h2>
     <div id="lastfm-widget" style="display: flex; align-items: center; gap: 12px;">
         <div id="track-icon" style="font-size: 2rem; line-height: 1;">🎵</div>
         <div style="flex: 1;">
@@ -514,6 +506,7 @@
             if (track) {
                 const songName = track.name.length > 40 ? track.name.slice(0, 40) + '…' : track.name;
                 const artistName = track.artist['#text'].length > 30 ? track.artist['#text'].slice(0, 30) + '…' : track.artist['#text'];
+                
                 
                 if (track.url && (track.url.includes('youtube.com') || track.url.includes('youtu.be'))) {
                     iconHtml = '🔴'; 
@@ -766,5 +759,6 @@
 </body>
 
 </html>
+
 
 
