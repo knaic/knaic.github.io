@@ -479,10 +479,20 @@
     </div>
 </div>
 
+<div class="section">
+    <h2><span class="arrow">▶</span> now playing</h2>
+    <div id="lastfm-widget" style="display: flex; align-items: center; gap: 12px;">
+        <div id="track-icon" style="font-size: 2rem; line-height: 1;">🎵</div>
+        <div style="flex: 1;">
+            <p class="highlight" data-type="comment" id="lastfm-track" style="margin-bottom: 2px;">⏳ loading...</p>
+            <p class="highlight" data-type="comment" id="lastfm-artist" style="font-size: 0.9rem;"></p>
+        </div>
+    </div>
+</div>
+
 <script>
-    
     const lastfmUser = 'nowotx';  
-    const apiKey = '7e7b00143917b7f295f03138a5c47f33'; 
+    const apiKey = '7e7b00143917b7f295f03138a5c47f33';
 
     async function fetchLastFm() {
         try {
@@ -499,12 +509,19 @@
             
             let trackHtml = '';
             let artistHtml = '';
+            let iconHtml = '🎵'; 
             
             if (track) {
                 const songName = track.name.length > 40 ? track.name.slice(0, 40) + '…' : track.name;
                 const artistName = track.artist['#text'].length > 30 ? track.artist['#text'].slice(0, 30) + '…' : track.artist['#text'];
                 
-                trackHtml = `🎵 <span class="string">${songName}</span>`;
+                if (track.url && (track.url.includes('youtube.com') || track.url.includes('youtu.be'))) {
+                    iconHtml = '🔴'; 
+                    trackHtml = `<a href="${track.url}" target="_blank" style="color: #ff5e5e; text-decoration: none;">▶️ <span class="string">${songName}</span></a>`;
+                } else {
+                    trackHtml = `🎵 <span class="string">${songName}</span>`;
+                }
+                
                 artistHtml = `<span class="keyword">${artistName}</span>`;
                 
                 if (isNowPlaying) {
@@ -516,41 +533,16 @@
             
             document.getElementById('lastfm-track').innerHTML = trackHtml;
             document.getElementById('lastfm-artist').innerHTML = artistHtml;
+            document.getElementById('track-icon').innerHTML = iconHtml;
             
         } catch (error) {
             document.getElementById('lastfm-track').innerHTML = '🎵 failed to load';
         }
     }
 
-    
     fetchLastFm();
     setInterval(fetchLastFm, 10000);
 </script>
-
-            <div class="note">
-                <p>⚠️ <span class="highlight" data-type="comment">This site uses no trackers, no cookies.</span></p>
-                <p>
-                    Browser: <span class="highlight" data-type="keyword" onclick="window.open('https://www.mozilla.org/firefox/', '_blank')">Firefox</span> •
-                    Search: <span class="highlight" data-type="keyword" onclick="window.open('https://www.startpage.com/', '_blank')">Startpage</span> •
-                    DNS: <span class="highlight" data-type="keyword" onclick="window.open('https://nextdns.io/', '_blank')">NEXTDNS</span>
-                </p>
-                <div style="margin-top:10px; border-top:1px dashed #33ff33; padding-top:8px;">
-                    <span style="color:#33ff33;">&gt; visits:</span> <span id="visitCount" class="counter-value">0</span>
-                </div>
-            </div>
-
-            <div class="footer">
-                <p>
-                    <a onclick="window.open('https://github.com/tuxset', '_blank'); startConfetti(20)">github/tuxset</a>
-                    <a onclick="window.open('mailto:tux@xyecoc.com'); startConfetti(10)">tux@xyecoc.com</a>
-                    <a onclick="startConfetti(60); return false;">don't click</a>
-                </p>
-                <p style="margin-top:8px;">nowotx © 2026</p>
-            </div>
-        </div>
-    </div>
-
-    <script>
       
         const canvas = document.getElementById('bgCanvas');
         const ctx = canvas.getContext('2d');
@@ -774,4 +766,5 @@
 </body>
 
 </html>
+
 
