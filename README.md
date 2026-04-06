@@ -46,4 +46,4 @@ fetch('https://api.github.com/users/ВАШ_НИК/repos...')
 3D-эффекты
 
 Лицензия
-MIT © 2026 tuxset
+MIT © 2026 knaic
