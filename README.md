@@ -27,7 +27,7 @@ GitHub Pages
 
 # Запуск локально
 bash
-git clone https://github.com/frzvoxel/frzvoxel.github.io.git
+git clone https://github.com/frzvoxel/knaic.github.io.git
 cd frzvoxel.github.io
 # Открыть index.html в браузере
 
@@ -36,7 +36,7 @@ cd frzvoxel.github.io
 
 Частицы — в script.js: количество, цвет, скорость.
 
-GitHub — в loadRepos() заменить frzvoxel на свой ник:
+GitHub — в loadRepos() заменить knaic на свой ник:
 
 js
 fetch('https://api.github.com/users/ВАШ_НИК/repos...')
