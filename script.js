@@ -193,7 +193,7 @@
             const repoList = document.getElementById('repoList');
             
             try {
-                const response = await fetch('https://api.github.com/users/frzvoxel/repos?sort=updated&per_page=10');
+                const response = await fetch('https://api.github.com/users/knaic/repos?sort=updated&per_page=10');
                 
                 if (!response.ok) {
                     throw new Error(`HTTP error! status: ${response.status}`);
